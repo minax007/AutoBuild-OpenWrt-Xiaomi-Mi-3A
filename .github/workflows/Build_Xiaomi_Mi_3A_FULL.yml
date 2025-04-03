@@ -57,6 +57,7 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         echo "src-git gSpotx2f https://github.com/gSpotx2f/luci-app-cpu-status-mini.git;master " >> feeds.conf.default
+        echo "src-git k-szuster https://github.com/k-szuster/luci-access-control.git;master " >> feeds.conf.default
     #    echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
     - name: Update & Install feeds
       working-directory: ./openwrt
