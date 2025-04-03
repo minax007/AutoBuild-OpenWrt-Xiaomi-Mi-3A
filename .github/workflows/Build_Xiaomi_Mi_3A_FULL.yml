@@ -51,31 +51,17 @@ jobs:
     - name: Clone source code
       env: 
         REPO_URL: https://github.com/minax007/openwrt
-    #    REPO_BRANCH: master
-        REPO_BRANCH: openwrt-24.10
+        REPO_BRANCH: openwrt-23.05
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-    #    echo "src-git k-szuster https://github.com/k-szuster/luci-access-control.git" >> ./feeds.conf.default
-    #    echo "src-git gSpotx2f https://github.com/gSpotx2f/luci-app-cpu-status-mini.git;master" >> feeds.conf.default
-    #    echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
+
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-    #    ./scripts/feeds install -a
-
-    - name: Include External ipk-Packages
-      run: |
-        wget -O packages.txt https://github.com/minax007/packages/raw/main/external-package-urls.txt
-        cat packages.txt | xargs wget -P ./openwrt/packages
-        
-    #- name: Import external feeds - JerryKuKu Argon
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon-jerrykuku   
-  
+ 
     - name: Configuration Customization - Build_Xiaomi_Mi_3A
       env:
         CONFIG_FILE: 'Mi3A_FULL.config'
