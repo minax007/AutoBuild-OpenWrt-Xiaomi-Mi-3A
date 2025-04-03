@@ -56,15 +56,20 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
+    #    echo "src-git k-szuster https://github.com/k-szuster/luci-access-control.git" >> ./feeds.conf.default
     #    echo "src-git gSpotx2f https://github.com/gSpotx2f/luci-app-cpu-status-mini.git;master" >> feeds.conf.default
     #    echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
-        echo "src-git k-szuster https://github.com/k-szuster/luci-access-control.git" >> ./feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
     #    ./scripts/feeds install -a
+
+    - name: Include External ipk-Packages
+      run: |
+        wget -O packages.txt https://github.com/minax007/packages/raw/main/external-package-urls.txt
+        cat packages.txt | xargs wget -P ./openwrt/packages
         
     #- name: Import external feeds - JerryKuKu Argon
     #  working-directory: ./openwrt
