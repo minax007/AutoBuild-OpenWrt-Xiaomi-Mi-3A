@@ -14,13 +14,17 @@ __________________________________________________________________
 **2. Set NVRAM values:**
 
    nvram set uart_en=1
+   
    nvram set bootdelay=5
+   
    nvram set flag_try_sys1_failed=1
+   
    nvram commit
 
 **3. Erase operating system partitions:**
 
    mtd erase OS1
+   
    mtd erase OS2
 
 **4. Upload file "openwrt-ramips-mt76x8-xiaomi_miwifi-3a-squashfs-sysupgrade.bin" via FTP into the /tmp directory of the router (IP-adress: 192.168.31.1 | Port:21)**
