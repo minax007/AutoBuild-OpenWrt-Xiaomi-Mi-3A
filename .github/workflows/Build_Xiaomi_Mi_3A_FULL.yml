@@ -50,7 +50,7 @@ jobs:
         sudo -E apt-get clean
     - name: Clone source code
       env: 
-        REPO_URL: https://github.com/minax007/openwrt-24.10.0-rc7
+        REPO_URL: https://github.com/minax007/openwrt    # -24.10.0-rc7
         REPO_BRANCH: main                               # openwrt-24.10
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
@@ -59,8 +59,8 @@ jobs:
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
- #       ./scripts/feeds update -a
- #       ./scripts/feeds install -a
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
 
     - name: Configuration Customization - Build_Xiaomi_Mi_3A
       env:
