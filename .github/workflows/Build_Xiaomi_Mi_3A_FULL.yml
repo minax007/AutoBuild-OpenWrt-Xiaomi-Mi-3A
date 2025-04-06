@@ -59,9 +59,9 @@ jobs:
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
-        ./scripts/feeds update -a
+ #       ./scripts/feeds update -a
         ./scripts/feeds install -a
- 
+
     - name: Configuration Customization - Build_Xiaomi_Mi_3A
       env:
         CONFIG_FILE: 'Mi3A_FULL.config'
