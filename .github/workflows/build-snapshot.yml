@@ -10,8 +10,8 @@ on:
 
 env:
   BOARD: "ramips"
-  SUBTARGET: "mt7621"
-  PROFILE: "xiaomi_mi-router-ac2100"
+  SUBTARGET: "mt76x8"
+  PROFILE: "xiaomi_miwifi-3a"
   PACKAGES_TYPE1: "luci"
   
 jobs:
