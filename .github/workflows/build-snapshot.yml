@@ -12,7 +12,7 @@ env:
   BOARD: "ramips"
   SUBTARGET: "mt76x8"
   PROFILE: "xiaomi_miwifi-3a"
-  PACKAGES_TYPE1: "luci"
+  PACKAGES_TYPE1: "luci luci-theme-material luci-app-adblock tcpdump-mini luci-app-access-control luci-app-cpu-status-mini luci-app-log-viewer internet-detector luci-app-internet-detector -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -odhcpd-ipv6only -ppp -ppp-mod-pppoe luci-app-https-dns-proxy curl openssh-sftp-server"  
   
 jobs:
   build:
@@ -52,13 +52,13 @@ jobs:
       run: |
         cd openwrt
         make image PROFILE="${{ env.PROFILE }}" PACKAGES="${{ env.PACKAGES_TYPE1 }}"
-        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_R2100_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
+        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
 #    - name: Build the image of type 2
 #      id: type2
 #      run: |
 #        cd openwrt
 #        make image PROFILE="${{ env.PROFILE }}" PACKAGES="${{ env.PACKAGES_TYPE2 }}"
-#        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_R2100_${{ env.OPENWRT_VERSION }}_MESH_sysupgrade.bin
+#        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_MESH_sysupgrade.bin
 
 
     - name: Create Release
@@ -68,7 +68,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ env.OPENWRT_VERSION }}_snapshot
-        release_name: OpenWrt R2100 (${{ env.OPENWRT_VERSION }}) snapshot
+        release_name: OpenWrt Xiaomi MiWiFi 3A (${{ env.OPENWRT_VERSION }}) snapshot
         body: |
           This release is based on OpenWrt snapshot ${{ env.OPENWRT_VERSION }}.
                     
@@ -82,8 +82,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: openwrt/OpenWrt_R2100_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
-        asset_name: OpenWrt_R2100_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
+        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
+        asset_name: OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
         asset_content_type: application/bin
 
 #    - name: Upload type2 Asset
@@ -93,6 +93,6 @@ jobs:
 #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      with:
 #        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-#        asset_path: openwrt/OpenWrt_R2100_${{ env.OPENWRT_VERSION }}_MESH_sysupgrade.bin
-#        asset_name: OpenWrt_R2100_${{ env.OPENWRT_VERSION }}_MESH_sysupgrade.bin
+#        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_MESH_sysupgrade.bin
+#        asset_name: OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_MESH_sysupgrade.bin
 #        asset_content_type: application/bin
