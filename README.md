@@ -32,6 +32,9 @@ __________________________________________________________________
 **5. Flash OpenWrt to the router:**
 
    mtd -r write /tmp/openwrt-ramips-mt76x8-xiaomi_miwifi-3a-squashfs-sysupgrade.bin OS1
+
+The router will reboot after the flashing.
+Done!
 __________________________________________________________________
 **Official OpenWrt snapshot of Mi-3A build without LuCI:**
 
@@ -40,7 +43,3 @@ __________________________________________________________________
 **Official OpenWrt snapshot download directory for MT76x8 routers, which includes the imagebuilder used in this action script:**
 
 https://downloads.openwrt.org/snapshots/targets/ramips/mt76x8/
-   mtd -r write /tmp/openwrt-ramips-mt76x8-xiaomi_miwifi-3a-squashfs-sysupgrade.bin OS1
-
-The router will reboot after the flashing.
-Done!
