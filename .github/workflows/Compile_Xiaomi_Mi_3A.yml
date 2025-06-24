@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm 
 #=================================================
 
-name: Build_Xiaomi_Mi_3A
+name: Compile_Xiaomi_Mi_3A
 
 # Add a button to trigger the workflow
 on: 
