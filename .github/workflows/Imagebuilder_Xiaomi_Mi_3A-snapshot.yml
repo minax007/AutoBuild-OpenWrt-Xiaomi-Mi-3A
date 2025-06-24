@@ -1,4 +1,4 @@
-name: Build OpenWrt Snapshot
+name: Imagebuilder_Xiaomi_Mi_3A-Snapshot
 
 on:
  # schedule:
