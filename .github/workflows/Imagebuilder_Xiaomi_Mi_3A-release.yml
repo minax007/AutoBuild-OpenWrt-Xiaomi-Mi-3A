@@ -1,4 +1,4 @@
-name: Build OpenWrt RELEASE MiWiFi-3A
+name: Imagebuilder_Xiaomi_Mi_3A-Release
 
 on:
 #  schedule:
