@@ -16,7 +16,7 @@ env:
   PACKAGES_TYPE1: "luci luci-theme-material luci-app-adblock tcpdump-mini -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -odhcpd-ipv6only -ppp -ppp-mod-pppoe luci-app-https-dns-proxy curl openssh-sftp-server internet-detector luci-app-internet-detector luci-app-log-viewer" 
   # luci-app-access-control luci-app-cpu-status-mini    
 
-  PACKAGES_TYPE2: "uhttpd luci-mod-admin-full luci-base libiwinfo-lua luci-app-firewall luci-theme-material -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -odhcpd-ipv6only -ppp -ppp-mod-pppoe luci-app-https-dns-proxy -kmod-usb-ledtrig-usbport -kmod-usb-ohci -kmod-usb2 -opkg luci-app-adblock internet-detector luci-app-internet-detector luci-app-log-viewer tcpdump-mini luci-app-nlbwmon luci-app-access-control"  
+  PACKAGES_TYPE2: "uhttpd luci-mod-admin-full luci-base libiwinfo-lua luci-app-firewall luci-theme-material -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -odhcpd-ipv6only -ppp -ppp-mod-pppoe luci-app-https-dns-proxy -kmod-usb-ledtrig-usbport -kmod-usb-ohci -kmod-usb2 -opkg luci-app-adblock internet-detector luci-app-internet-detector luci-app-log-viewer tcpdump-mini luci-app-nlbwmon snmpd iptables kmod-ipt-nat kmod-nf-nat luci-app-accesscontrol-plus"  
   
 jobs:
   build:
