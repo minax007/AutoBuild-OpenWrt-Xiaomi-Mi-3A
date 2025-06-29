@@ -66,10 +66,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ env.RELEASE }}
-        release_name: OpenWrt MiWiFi-3A (${{ env.RELEASE }})
+        tag_name: ${{ env.OPENWRT_VERSION }}
+        release_name: OpenWrt MiWiFi-3A (${{ env.OPENWRT_VERSION }})
         body: |
-          This release is based on OpenWrt release ${{ env.RELEASE }}.
+          This release is based on OpenWrt release ${{ env.OPENWRT_VERSION }}.
                     
         draft: false
         prerelease: false
@@ -81,8 +81,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_sysupgrade.bin
-        asset_name: OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_sysupgrade.bin
+        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
+        asset_name: OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_sysupgrade.bin
         asset_content_type: application/bin
 
     - name: Upload type2 Asset
@@ -92,6 +92,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_LEAN_sysupgrade.bin
-        asset_name: OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_LEAN_sysupgrade.bin
+        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_LEAN_sysupgrade.bin
+        asset_name: OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_LEAN_sysupgrade.bin
         asset_content_type: application/bin
