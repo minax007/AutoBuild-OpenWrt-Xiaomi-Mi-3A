@@ -1,11 +1,8 @@
 name: Imagebuilder_Xiaomi_Mi_3A-Snapshot
 
-on:
- # schedule:
- #   - cron: "0 2 * * *"
-  push:
-    branches:
-      - master
+# Add a button to trigger the workflow
+on: 
+  repository_dispatch:
   workflow_dispatch:
 
 env:
