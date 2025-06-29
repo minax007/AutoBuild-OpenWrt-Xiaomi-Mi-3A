@@ -1,13 +1,10 @@
 name: Imagebuilder_Xiaomi_Mi_3A-Release
 
-on:
-#  schedule:
-#    - cron: "0 2 * * *"
-  push:
-    branches:
-      - master
+# Add a button to trigger the workflow
+on: 
+  repository_dispatch:
   workflow_dispatch:
-  
+
 env:
   RELEASE: "24.10.2"
   BOARD: "ramips"
