@@ -58,7 +58,7 @@ jobs:
       run: |
         cd openwrt
         make image PROFILE="${{ env.PROFILE }}" PACKAGES="${{ env.PACKAGES_TYPE2 }}"
-        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.RELEASE }}-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_LEAN_sysupgrade.bin
+        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_MiWiFi-3A_${{ env.OPENWRT_VERSION }}_LEAN_sysupgrade.bin
         
     - name: Create Release
       id: create_release
