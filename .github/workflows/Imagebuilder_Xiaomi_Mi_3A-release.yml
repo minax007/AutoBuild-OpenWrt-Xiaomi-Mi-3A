@@ -15,6 +15,8 @@ env:
   PROFILE: "xiaomi_miwifi-3a"
   PACKAGES_TYPE1: "luci luci-theme-material luci-app-adblock tcpdump-mini -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -odhcpd-ipv6only -ppp -ppp-mod-pppoe luci-app-https-dns-proxy curl openssh-sftp-server internet-detector luci-app-internet-detector luci-app-log-viewer" 
   # luci-app-access-control luci-app-cpu-status-mini    
+
+  PACKAGES_TYPE2: "uhttpd luci-mod-admin-full luci-base libiwinfo-lua luci-app-firewall luci-theme-material -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -odhcpd-ipv6only -ppp -ppp-mod-pppoe luci-app-https-dns-proxy -kmod-usb-ledtrig-usbport -kmod-usb-ohci -kmod-usb2 -opkg internet-detector luci-app-internet-detector luci-app-log-viewer tcpdump luci-app-nlbwmon"  
   
 jobs:
   build:
@@ -56,12 +58,12 @@ jobs:
         make image PROFILE="${{ env.PROFILE }}" PACKAGES="${{ env.PACKAGES_TYPE1 }}"
         mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.RELEASE }}-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_sysupgrade.bin
 
-#    - name: Build the image of type 2
-#      id: type2
-#      run: |
-#        cd openwrt
-#        make image PROFILE="${{ env.PROFILE }}" PACKAGES="${{ env.PACKAGES_TYPE2 }}"
-#        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.RELEASE }}-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_DoH_sysupgrade.bin
+    - name: Build the image of type 2
+      id: type2
+      run: |
+        cd openwrt
+        make image PROFILE="${{ env.PROFILE }}" PACKAGES="${{ env.PACKAGES_TYPE2 }}"
+        mv bin/targets/${{ env.BOARD }}/${{ env.SUBTARGET }}/openwrt-${{ env.RELEASE }}-${{ env.BOARD }}-${{ env.SUBTARGET }}-${{ env.PROFILE }}-squashfs-sysupgrade.bin OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_LEAN_sysupgrade.bin
         
     - name: Create Release
       id: create_release
@@ -88,13 +90,13 @@ jobs:
         asset_name: OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_sysupgrade.bin
         asset_content_type: application/bin
 
-#    - name: Upload type2 Asset
-#      id: upload-release-asset-type2
-#      uses: actions/upload-release-asset@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-#        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_DoH_sysupgrade.bin
-#        asset_name: OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_DoH_sysupgrade.bin
-#        asset_content_type: application/bin
+    - name: Upload type2 Asset
+      id: upload-release-asset-type2
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: openwrt/OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_LEAN_sysupgrade.bin
+        asset_name: OpenWrt_MiWiFi-3A_${{ env.RELEASE }}_LEAN_sysupgrade.bin
+        asset_content_type: application/bin
