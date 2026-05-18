@@ -1,4 +1,4 @@
-name: Imagebuilder_Xiaomi_Mi_3A-Snapshot
+name: Imagebuilder_ImmortalWrt_Xiaomi_Mi_3A-Snapshot
 
 # Add a button to trigger the workflow
 on: 
