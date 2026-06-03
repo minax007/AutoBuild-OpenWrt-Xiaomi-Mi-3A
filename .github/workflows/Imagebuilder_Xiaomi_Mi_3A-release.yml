@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  RELEASE: "25.12.3"
+  RELEASE: "25.12.4"
   BOARD: "ramips"
   SUBTARGET: "mt76x8"
   PROFILE: "xiaomi_miwifi-3a"
